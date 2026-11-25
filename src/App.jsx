@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Layout } from './components/layout/Layout.jsx'
+import { ErrorBoundary } from './components/ui/ErrorBoundary.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { MyCourses } from './pages/MyCourses.jsx'
 import { Timetable } from './pages/Timetable.jsx'
@@ -58,7 +59,9 @@ export default function App() {
       setSidebarOpen={setSidebarOpen}
       notifications={notifications}
     >
-      <Page navigate={navigate} />
+      <ErrorBoundary resetKey={route} onGoHome={() => navigate('dashboard')}>
+        <Page navigate={navigate} />
+      </ErrorBoundary>
     </Layout>
   )
 }

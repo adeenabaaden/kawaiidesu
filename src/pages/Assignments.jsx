@@ -35,7 +35,7 @@ export function Assignments() {
         const isSubmitted = a.status === 'submitted' || isDone
         const overdue = due.overdue && !isSubmitted
         const priority = priorityOf(a, overdue)
-        return { ...a, due, isDone, isSubmitted, overdue, priority, days: Math.ceil((new Date(a.due) - new Date()) / 86400000) }
+        return { ...a, dueLabel: due, isDone, isSubmitted, overdue, priority, days: Math.ceil((new Date(a.due) - new Date()) / 86400000) }
       }),
     [completed],
   )
@@ -169,7 +169,7 @@ export function Assignments() {
                             <CheckCircle2 className="h-3 w-3" aria-hidden="true" /> Completed
                           </>
                         ) : (
-                          a.due.label
+                          a.dueLabel.label
                         )}
                       </span>
                     </div>
